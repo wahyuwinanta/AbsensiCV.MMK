@@ -55,7 +55,7 @@ class IconGeneratorController extends Controller
             }
 
             // Hapus file master temporary
-            Storage::disk('public')->delete($masterPath);
+            Storage::disk(config('filesystems.default_public_disk'))->delete($masterPath);
 
             // Update manifest.json
             $this->updateManifest($generatedIcons);

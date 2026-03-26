@@ -70,26 +70,26 @@ class BersihkanfotoController extends Controller
         $deletedCount = 0;
 
         // Delete foto_in file only
-        if ($presensi->foto_in && Storage::disk('public')->exists('uploads/absensi/' . $presensi->foto_in)) {
-            Storage::disk('public')->delete('uploads/absensi/' . $presensi->foto_in);
+        if ($presensi->foto_in && Storage::disk(config('filesystems.default_public_disk'))->exists('uploads/absensi/' . $presensi->foto_in)) {
+            Storage::disk(config('filesystems.default_public_disk'))->delete('uploads/absensi/' . $presensi->foto_in);
             $deletedCount++;
         }
 
         // Delete foto_out file only
-        if ($presensi->foto_out && Storage::disk('public')->exists('uploads/absensi/' . $presensi->foto_out)) {
-            Storage::disk('public')->delete('uploads/absensi/' . $presensi->foto_out);
+        if ($presensi->foto_out && Storage::disk(config('filesystems.default_public_disk'))->exists('uploads/absensi/' . $presensi->foto_out)) {
+            Storage::disk(config('filesystems.default_public_disk'))->delete('uploads/absensi/' . $presensi->foto_out);
             $deletedCount++;
         }
 
         // Delete foto_istirahat_in file only
-        if ($presensi->foto_istirahat_in && Storage::disk('public')->exists('uploads/absensi/' . $presensi->foto_istirahat_in)) {
-            Storage::disk('public')->delete('uploads/absensi/' . $presensi->foto_istirahat_in);
+        if ($presensi->foto_istirahat_in && Storage::disk(config('filesystems.default_public_disk'))->exists('uploads/absensi/' . $presensi->foto_istirahat_in)) {
+            Storage::disk(config('filesystems.default_public_disk'))->delete('uploads/absensi/' . $presensi->foto_istirahat_in);
             $deletedCount++;
         }
 
         // Delete foto_istirahat_out file only
-        if ($presensi->foto_istirahat_out && Storage::disk('public')->exists('uploads/absensi/' . $presensi->foto_istirahat_out)) {
-            Storage::disk('public')->delete('uploads/absensi/' . $presensi->foto_istirahat_out);
+        if ($presensi->foto_istirahat_out && Storage::disk(config('filesystems.default_public_disk'))->exists('uploads/absensi/' . $presensi->foto_istirahat_out)) {
+            Storage::disk(config('filesystems.default_public_disk'))->delete('uploads/absensi/' . $presensi->foto_istirahat_out);
             $deletedCount++;
         }
 

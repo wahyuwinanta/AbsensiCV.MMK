@@ -243,7 +243,7 @@ class GrupController extends Controller
         $karyawanInGrup = $karyawanInGrup->map(function ($karyawan) {
             $karyawan->foto_exists = false;
             if (!empty($karyawan->foto)) {
-                $karyawan->foto_exists = Storage::disk('public')->exists('karyawan/' . $karyawan->foto);
+                $karyawan->foto_exists = Storage::disk(config('filesystems.default_public_disk'))->exists('karyawan/' . $karyawan->foto);
             }
             return $karyawan;
         });
@@ -365,7 +365,7 @@ class GrupController extends Controller
         $karyawanInGrup = $karyawanInGrup->map(function ($karyawan) {
             $karyawan->foto_exists = false;
             if (!empty($karyawan->foto)) {
-                $karyawan->foto_exists = Storage::disk('public')->exists('karyawan/' . $karyawan->foto);
+                $karyawan->foto_exists = Storage::disk(config('filesystems.default_public_disk'))->exists('karyawan/' . $karyawan->foto);
             }
             return $karyawan;
         });
@@ -601,7 +601,7 @@ class GrupController extends Controller
             $karyawan = $karyawan->map(function ($k) {
                 $k->foto_exists = false;
                 if (!empty($k->foto)) {
-                    $k->foto_exists = Storage::disk('public')->exists('karyawan/' . $k->foto);
+                    $k->foto_exists = Storage::disk(config('filesystems.default_public_disk'))->exists('karyawan/' . $k->foto);
                 }
                 return $k;
             });

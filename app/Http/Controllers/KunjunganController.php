@@ -188,13 +188,13 @@ class KunjunganController extends Controller
                 $filepath = 'uploads/kunjungan/' . $filename;
                 
                 $destinationPath = 'uploads/kunjungan/';
-                if (!Storage::disk('public')->exists($destinationPath)) {
-                    Storage::disk('public')->makeDirectory($destinationPath, 0775, true);
-                    $path = Storage::disk('public')->path($destinationPath);
+                if (!Storage::disk(config('filesystems.default_public_disk'))->exists($destinationPath)) {
+                    Storage::disk(config('filesystems.default_public_disk'))->makeDirectory($destinationPath, 0775, true);
+                    $path = Storage::disk(config('filesystems.default_public_disk'))->path($destinationPath);
                     chmod($path, 0775);
                 }
 
-                Storage::disk('public')->put($filepath, $image_base64);
+                Storage::disk(config('filesystems.default_public_disk'))->put($filepath, $image_base64);
                 $data['foto'] = $filename;
             } else {
                 $data['foto'] = $foto;
@@ -307,13 +307,13 @@ class KunjunganController extends Controller
             $filepath = 'uploads/kunjungan/' . $filename;
 
             $destinationPath = 'uploads/kunjungan/';
-            if (!Storage::disk('public')->exists($destinationPath)) {
-                Storage::disk('public')->makeDirectory($destinationPath, 0775, true);
-                $path = Storage::disk('public')->path($destinationPath);
+            if (!Storage::disk(config('filesystems.default_public_disk'))->exists($destinationPath)) {
+                Storage::disk(config('filesystems.default_public_disk'))->makeDirectory($destinationPath, 0775, true);
+                $path = Storage::disk(config('filesystems.default_public_disk'))->path($destinationPath);
                 chmod($path, 0775);
             }
 
-            Storage::disk('public')->put($filepath, file_get_contents($file));
+            Storage::disk(config('filesystems.default_public_disk'))->put($filepath, file_get_contents($file));
             $data['foto'] = $filename;
         } elseif ($request->filled('foto')) {
             // Handle base64 image (from mobile/camera)
@@ -327,13 +327,13 @@ class KunjunganController extends Controller
                 $filepath = 'uploads/kunjungan/' . $filename;
 
                 $destinationPath = 'uploads/kunjungan/';
-                if (!Storage::disk('public')->exists($destinationPath)) {
-                    Storage::disk('public')->makeDirectory($destinationPath, 0775, true);
-                    $path = Storage::disk('public')->path($destinationPath);
+                if (!Storage::disk(config('filesystems.default_public_disk'))->exists($destinationPath)) {
+                    Storage::disk(config('filesystems.default_public_disk'))->makeDirectory($destinationPath, 0775, true);
+                    $path = Storage::disk(config('filesystems.default_public_disk'))->path($destinationPath);
                     chmod($path, 0775);
                 }
 
-                Storage::disk('public')->put($filepath, $image_base64);
+                Storage::disk(config('filesystems.default_public_disk'))->put($filepath, $image_base64);
                 $data['foto'] = $filename;
             } else {
                 $data['foto'] = $foto;
@@ -368,8 +368,8 @@ class KunjunganController extends Controller
         }
         
         // Delete foto if exists
-        if ($kunjungan->foto && Storage::disk('public')->exists('uploads/kunjungan/' . $kunjungan->foto)) {
-            Storage::disk('public')->delete('uploads/kunjungan/' . $kunjungan->foto);
+        if ($kunjungan->foto && Storage::disk(config('filesystems.default_public_disk'))->exists('uploads/kunjungan/' . $kunjungan->foto)) {
+            Storage::disk(config('filesystems.default_public_disk'))->delete('uploads/kunjungan/' . $kunjungan->foto);
         }
 
         $kunjungan->delete();
